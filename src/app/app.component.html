@@ -13,19 +13,25 @@
 <div nz-row>
   <div nz-col nzSpan="20" nzOffset="2">
      <nz-card style="background-color: #f0f2f5;" nzTitle="Conmplaints Notification Groups" [nzExtra]="extraTemplate">
-<div>
-       <div style="background: #f0f2f5" >
+<div  style="">
+       <div style="background: #ECECEC" >
         
-        <div nz-row [nzGutter]="8" >
+        <div nz-row [nzGutter]="24" >
          
-          <div *ngFor="let x of listOfData ; let i = index"   nz-col [nzSpan]="8">
+          <div *ngFor="let x of listOfData ; let i = index"   nz-col [nzSpan]="24">
             <nz-card >
               <div  style="display: flex ; justify-content: space-between;align-items: center;">
-                <p><b>{{x.email}}</b></p> 
-              <button nz-button nzType="primary" (click)="deleteemail(i)" nzDanger nzShape="round">Delete</button>
+                <div style="display: flex; gap: 20px; ">
+                  <p><b>{{x.email}}</b></p> 
+                  <p><b>{{x.phoneNO}}</b></p> 
+                </div>
+                <div >
+                  <nz-checkbox-group [(ngModel)]="x.checkOptionsOne" (ngModelChange)="log(x.checkOptionsOne)"></nz-checkbox-group>
+                  <button nz-button nzType="primary" (click)="deleteemail(i)" nzDanger nzShape="round">Delete</button>
+                </div>
               </div>
             </nz-card>
-          </div>
+          </div>  
          	
         </div>
       </div>    

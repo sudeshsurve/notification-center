@@ -18,6 +18,7 @@ import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzModalModule } from 'ng-zorro-antd/modal';
 import { NzListModule } from 'ng-zorro-antd/list';
 import { NzTableModule } from 'ng-zorro-antd/table'
+import { NzCheckboxModule } from 'ng-zorro-antd/checkbox';
 registerLocaleData(en);
 
 @NgModule({
@@ -38,7 +39,8 @@ registerLocaleData(en);
     NzModalModule,
     NzListModule,
     NzTableModule,
-    FormsModule
+    FormsModule,
+    NzCheckboxModule  
   ],
   providers: [
     { provide: NZ_I18N, useValue: en_US }

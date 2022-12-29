@@ -6,24 +6,45 @@ import { NzButtonSize } from 'ng-zorro-antd/button';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  @ViewChild('#email') email :any
- value :any= {
-email : ""
- }
-   
+  @ViewChild('#email') email: any
+  value: any = {
+    email: ""
+  }
+
 
   listOfData = [
     {
-      email: 'John Brown',   
+      checkOptionsOne : [
+        { label: 'email', value: 'sudesh',},  
+        { label: 'Phone No', value: 'Pear' },
+        { label: 'Message', value: 'Orange' }],
+      value: 'sudesh',
+      email: 'John Brown',
+      phoneNO : 9928398293
     },
     {
+      checkOptionsOne : [
+        { label: 'email', value: 'sudesh',},  
+        { label: 'Phone No', value: 'Pear' },
+        { label: 'Message', value: 'Orange' }],
       email: 'Jim Green',
+      phoneNO : 9928398293
     },
     {
+      checkOptionsOne : [
+        { label: 'email', value: 'sudesh',},  
+        { label: 'Phone No', value: 'Pear' },
+        { label: 'Message', value: 'Orange' }],
       email: 'sudesh@gmail.com ',
+      phoneNO : 9928398293
     },
     {
+      checkOptionsOne : [
+        { label: 'email', value: 'sammer@gmail.com',},  
+        { label: 'Phone No', value: '9928398293' },
+        { label: 'Message', value: 'Orange' }],
       email: 'sammer@gmail.com',
+      phoneNO : 9928398293
     },
   ]
   title = 'notification-center';
@@ -41,16 +62,22 @@ email : ""
   submit(): void {
     console.log('Button ok clicked!');
     console.log(this.email);
-    
-   this.listOfData.push({email : this.value.email})
+
+    // this.listOfData.push({ email: this.value.email  })
     this.isVisible = false;
-  
+
   }
 
-  deleteemail(i:any){
+  deleteemail(i: any) {
     console.log(i);
-  this.listOfData.splice(i , 1)
+    this.listOfData.splice(i, 1)
   }
 
- 
+  log(data: object[]): void {
+    data.forEach(x => {
+      
+    });
+    console.log(data);
+    
+  }
 }
