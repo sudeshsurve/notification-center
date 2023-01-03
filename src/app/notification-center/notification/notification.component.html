@@ -41,7 +41,7 @@
         <ng-template #modalTitle>Add Member</ng-template>
       
         <ng-template #modalContent>
-            <form [formGroup]="myForm" (ngSubmit)="onSubmit(myForm.value)" nz-form  class="login-form" >
+            <form [formGroup]="myForm" (ngSubmit)="onSubmit(myForm)" nz-form  class="login-form" >
                 <nz-form-item>
                     <!-- <label>email</label> -->
                   <nz-form-control>
@@ -60,28 +60,29 @@
                     <nz-input-group >
                         <label>SMS NO</label>
                       <input type="number" nz-input formControlName="message"   placeholder="SMS No" />
-                      <div *ngIf="myForm.get('message')?.invalid && (myForm.get('message')?.dirty || myForm.get('message')?.touched)">
-                        <p style="color:red">Eneter Number</p> 
-                      </div>
+                      <div *ngIf="submitted && myForm.controls.message.errors">
+                        <span *ngIf="submitted && myForm.controls.message.errors.required">*Message Number is Requried</span>
+                        <span *ngIf="submitted && myForm.controls.message.errors.pattern">*Number is Not Valid</span>
+                   </div>
                     </nz-input-group>
                   </nz-form-control>
                 </nz-form-item>
 
-                <!-- <nz-form-item>
+                <nz-form-item>
                   <nz-form-control >
                     <nz-input-group >
                         <label>Whatsapp</label>
                       <input type="number" nz-input formControlName="whatsapp"   placeholder="Whatsapp NO" />
-                      <div *ngIf="myForm.get('whatsapp')?.invalid && (myForm.get('whatsapp')?.dirty || myForm.get('whatsapp')?.touched)">
-                        <p style="color:red">please Whatsapp  Number </p> 
-                      </div>
+                      <div *ngIf="submitted && myForm.controls.whatsapp.errors">
+                        <span *ngIf="submitted && myForm.controls.whatsapp.errors.required">*Whatsapp Number is Requried</span>
+                        <span *ngIf="submitted && myForm.controls.whatsapp.errors.pattern">*Number is Not Valid</span>
+                   </div>
                     </nz-input-group>
                   </nz-form-control>
-                </nz-form-item> -->
+                </nz-form-item> 
                    
-                <nz-form-item>
-                  <!-- <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="wha" nzRequired>Phone Number</nz-form-label> -->
-                  <nz-form-control
+                <!-- <nz-form-item>
+                            <nz-form-control
                     [nzSm]="14"
                     [nzXs]="24"
                     [nzValidateStatus]="myForm.controls['whatsapp']"
@@ -97,13 +98,13 @@
                       <input formControlName="whatsapp" id="'phoneNumber'" nz-input />
                     </nz-input-group>
                   </nz-form-control>
-                </nz-form-item>
+                </nz-form-item> -->
 
                 <nz-form-item>
                     <!-- <nz-form-label>Whatsapp No</nz-form-label> -->
                   <nz-form-control >
                    
-                      <button nz-button  nzType="primary"  > Submit</button>
+                      <button nz-button    nzType="primary"  > Submit</button>
                     
                   </nz-form-control>
                 </nz-form-item>

@@ -69,14 +69,22 @@ export class NotificationComponent implements OnInit {
     console.log('Button cancel clicked!');
     this.isVisible = false;
   }
-  onSubmit(value:any) {
-    console.log(value);
-    this.submitted = true
-    console.log('Button ok clicked!');
-    // console.log(this.email);
-      // this.tableEmptyData = false
-    // this.listOfData.push({ email: this.email  })
-    // this.isVisible = false;
+  onSubmit(form:any) {
+    try {
+      this.submitted = true
+    if(form.valid){
+      this.isVisible = false;
+      console.log('Button ok clicked!');
+    }else{
+       throw new Error("all fileds required!");
+    }
+    } catch (error) {
+       if(error  instanceof Error){
+        throw error
+       }
+    }
+    
+
   }
 
   deleteemail(i: any) {
@@ -92,12 +100,13 @@ export class NotificationComponent implements OnInit {
      });   
   }
 
-  emailPattern = "^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$";
+  emailPattern = "^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+  NumberPattern = "^((\\+91-?)|0)?[0-9]{10}$"
   ngOnInit(): void {
     this.myForm = this.fb.group({
-      whatsapp: [ null, Validators.required],
+      whatsapp: [ null, [Validators.required , Validators.pattern(this.NumberPattern)]],
       email: [null, [Validators.required, Validators.email , Validators.pattern(this.emailPattern)]],
-      message: [null, [Validators.required, Validators.minLength(15)]],
+      message: [null, [Validators.required, Validators.pattern(this.NumberPattern)]],
     });
   }
 
