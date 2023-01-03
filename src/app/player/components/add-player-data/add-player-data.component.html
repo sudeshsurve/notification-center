@@ -1,0 +1,36 @@
+{{error}}
+
+<div nz-row >
+    <div style="margin-top: 5%;" nz-col nzSpan="16" nzOffset="4">
+        <nz-card nzTitle="Player Table">
+            <nz-table #basicTable [nzTemplateMode]="tableEmptyData" [nzScroll]="{ y: '300px' }" >
+               <thead>
+                 <tr>
+                   <th>Name</th>
+                   <th>Age</th>
+                   <th>email</th>
+                   <th>Gender</th>
+                   <th>Action</th>
+                 </tr>
+               </thead>
+               <tbody >
+                 <tr *ngFor="let data of playerdata ">
+                   <td>{{data.name}}</td>
+                   <td>{{data.age}}</td>  
+                   <td>{{data.email}}</td>
+                   <td>{{data.gender}}</td>
+                   <td>
+                    <div>
+                       <button nz-button (click)="view_player(data._id)" nzType="primary">View</button>
+                    <button nz-button (click)="remove(data._id)" nzType="default">Remove</button>
+                    </div>
+                   
+                   </td>
+                 </tr> 
+               </tbody>
+             </nz-table>
+        </nz-card>
+    </div>
+  </div>
+
+

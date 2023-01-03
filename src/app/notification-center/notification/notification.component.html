@@ -1,0 +1,121 @@
+
+<!-- <button routerLink="/player">Player component</button> -->
+    <div nz-row>
+        <div nz-col nzSpan="20" nzOffset="2">
+           <nz-card style="background-color: #f0f2f5; margin-bottom: -24%"   nzTitle="{{tite}}" [nzExtra]="extraTemplate">    
+            <nz-table style="margin-top:-25px" [nzTemplateMode]="listOfData.length > 0  ? tableEmptyData : !tableEmptyData"  #basicTable nzSize="small" [nzScroll]="{ y: '240px' }" >
+              <thead>
+                <tr>
+                  <th nzWidth="300px" nzAlign="center">Email</th>    
+                  <th nzWidth="300px" nzAlign="center">Phone NO</th>
+                  <th nzAlign="center"> Select platform</th>
+                  <th nzWidth="200px" nzAlign="center">Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr  *ngFor="let data of listOfData  ; let i = index">
+                  <td  nzAlign="center">{{data.email}}</td>
+                  <td nzAlign="center">{{data.phoneNO}}</td>
+                  <td nzAlign="center" >
+                      <nz-checkbox-group [(ngModel)]="data.checkOptionsOne" (ngModelChange)="log(data.checkOptionsOne)"></nz-checkbox-group>
+                  </td>
+                  <td nzAlign="center" >
+                    <button nz-button nzType="link" (click)="deleteemail(i)" nzDanger nzShape="round">Delete</button>
+                  </td>
+                </tr> 
+              </tbody>
+            </nz-table>
+      </nz-card>
+      <ng-template #extraTemplate>
+        <button nz-button nzType="primary" (click)="showModal()" [nzSize]="'large'" nzShape="round">
+          Add
+        </button>
+      </ng-template>
+        </div>
+      <nz-modal
+        [(nzVisible)]="isVisible"
+        [nzTitle]="modalTitle"
+        [nzContent]="modalContent"
+        (nzOnCancel)="handleCancel()"
+      >
+        <ng-template #modalTitle>Add Member</ng-template>
+      
+        <ng-template #modalContent>
+            <form [formGroup]="myForm" (ngSubmit)="onSubmit(myForm.value)" nz-form  class="login-form" >
+                <nz-form-item>
+                    <!-- <label>email</label> -->
+                  <nz-form-control>
+                      <nz-input-group  >
+                        <label>Email id</label>
+                        <input type="text" nz-input formControlName="email" class="form-control"  placeholder="emial id" [ngClass]="{'is-invalid':submitted && myForm.controls.email.errors }"/>
+                     <div *ngIf="submitted && myForm.controls.email.errors">
+                      <span *ngIf="submitted && myForm.controls.email.errors.required">*Email is Requried</span>
+                      <span *ngIf="submitted && myForm.controls.email.errors.pattern">*Email is Not Valid</span>
+                 </div>
+                    </nz-input-group>   
+                  </nz-form-control>
+                </nz-form-item>
+                <nz-form-item>
+                  <nz-form-control >
+                    <nz-input-group >
+                        <label>SMS NO</label>
+                      <input type="number" nz-input formControlName="message"   placeholder="SMS No" />
+                      <div *ngIf="myForm.get('message')?.invalid && (myForm.get('message')?.dirty || myForm.get('message')?.touched)">
+                        <p style="color:red">Eneter Number</p> 
+                      </div>
+                    </nz-input-group>
+                  </nz-form-control>
+                </nz-form-item>
+
+                <!-- <nz-form-item>
+                  <nz-form-control >
+                    <nz-input-group >
+                        <label>Whatsapp</label>
+                      <input type="number" nz-input formControlName="whatsapp"   placeholder="Whatsapp NO" />
+                      <div *ngIf="myForm.get('whatsapp')?.invalid && (myForm.get('whatsapp')?.dirty || myForm.get('whatsapp')?.touched)">
+                        <p style="color:red">please Whatsapp  Number </p> 
+                      </div>
+                    </nz-input-group>
+                  </nz-form-control>
+                </nz-form-item> -->
+                   
+                <nz-form-item>
+                  <!-- <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="wha" nzRequired>Phone Number</nz-form-label> -->
+                  <nz-form-control
+                    [nzSm]="14"
+                    [nzXs]="24"
+                    [nzValidateStatus]="myForm.controls['whatsapp']"
+                    nzErrorTip="Please input your phone number!"
+                  >
+                    <nz-input-group [nzAddOnBefore]="addOnBeforeTemplate">
+                      <ng-template #addOnBeforeTemplate>
+                        <nz-select formControlName="whatsapp" class="phone-select">
+                          <nz-option nzLabel="+86" nzValue="+86"></nz-option>
+                          <nz-option nzLabel="+87" nzValue="+87"></nz-option>
+                        </nz-select>
+                      </ng-template>
+                      <input formControlName="whatsapp" id="'phoneNumber'" nz-input />
+                    </nz-input-group>
+                  </nz-form-control>
+                </nz-form-item>
+
+                <nz-form-item>
+                    <!-- <nz-form-label>Whatsapp No</nz-form-label> -->
+                  <nz-form-control >
+                   
+                      <button nz-button  nzType="primary"  > Submit</button>
+                    
+                  </nz-form-control>
+                </nz-form-item>
+           
+                </form>
+           
+        </ng-template>
+      
+      </nz-modal>
+      </div>
+
+
+
+  
+  

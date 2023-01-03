@@ -15,9 +15,9 @@ export class AppComponent {
   listOfData = [
     {
       checkOptionsOne : [
-        { label: 'email', value: 'sudesh',},  
-        { label: 'Phone No', value: 'Pear' },
-        { label: 'Message', value: 'Orange' }],
+        { label: 'email', value: 'John Brown',},  
+        { label: 'Phone No', value: 9928398293 },
+        { label: 'Message', value: 'Message' }],
       value: 'sudesh',
       email: 'John Brown',
       phoneNO : 9928398293
@@ -62,7 +62,7 @@ export class AppComponent {
   submit(): void {
     console.log('Button ok clicked!');
     console.log(this.email);
-
+      
     // this.listOfData.push({ email: this.value.email  })
     this.isVisible = false;
 
@@ -73,11 +73,17 @@ export class AppComponent {
     this.listOfData.splice(i, 1)
   }
 
-  log(data: object[]): void {
-    data.forEach(x => {
-      
-    });
-    console.log(data);
+  log(data: any[]): void {
+     data.forEach(x => {
+       if(x.checked){
+         console.log(x.value);
+      }
+       
+     });
+
+    
+    // console.log(res)
+    
     
   }
 }
